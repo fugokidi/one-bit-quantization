@@ -1,0 +1,13 @@
+{
+    "data_dir": "data",
+    "batch_size": 128,
+    "epochs": 160,
+    "lr_steps": 40,
+    "weight_decay": 0.0001,
+    "momentum": 0.9,
+    "num_workers": 1,
+    "trained_models_dir": "trained-models",
+    "results_dir": "results",
+    "bit": 1,
+    "dithering": false
+}
