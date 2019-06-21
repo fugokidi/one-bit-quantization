@@ -21,7 +21,7 @@ You many want to write a bash script to run all tests.
 
 `python train-exp.py with bit=1 dithering=True`
 
-### To test a model with differt epsilon
+### To test a model with different epsilon
 
 You need to specify the model name in the script `epsilon-exp.py`.
 I hard coded the name of the file in the script, sorry.
