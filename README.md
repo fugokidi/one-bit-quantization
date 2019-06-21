@@ -15,11 +15,11 @@ You many want to write a bash script to run all tests.
 
 ### To test 1 bit model
 
-`python train-exp.py with bit=1 dithering=Fasle`
+`python eval-exp.py with bit=1 dithering=Fasle`
 
 ### To test 1 bit dithered model
 
-`python train-exp.py with bit=1 dithering=True`
+`python eval-exp.py with bit=1 dithering=True`
 
 ### To test a model with different epsilon
 
