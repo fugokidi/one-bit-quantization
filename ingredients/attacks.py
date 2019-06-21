@@ -12,7 +12,7 @@ attacks_ingredient.add_config('config.json')
 
 
 @attacks_ingredient.capture
-def pgd_linf2(model, X, y):
+def pgd_linf2(model, X, y, epsilon, alpha):
     epsilon = epsilon / 255
     alpha = 2 / 255
     delta = torch.zeros_like(X, requires_grad=True)

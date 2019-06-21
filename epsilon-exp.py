@@ -8,7 +8,7 @@ from sacred.observers import MongoObserver
 
 from ingredients.attacks import attacks_ingredient, pgd_linf
 from ingredients.data_loader import data_ingredient, load_cifar10
-from ingredients.test import adv_1bit_test, test_ingredient
+from ingredients.test import adv_different_epsilon, test_ingredient
 from model.resnet import resnet20
 
 ex = Experiment('bitdepth-eval', ingredients=[data_ingredient,
@@ -32,20 +32,18 @@ def run(data_dir, trained_models_dir, momentum, weight_decay, results_dir,
 
     train_loader, test_loader = load_cifar10()
 
-
-    filename = 'resnet20-1bit-dither.pt'
+    filename = 'resnet20-8bit.pt'
     path = os.path.join(trained_models_dir, filename)
     model = resnet20().to(device)
     model.load_state_dict(torch.load(path))
     model.eval()
 
-    adv_err = adv_1bit_test(model=model, loader=test_loader,
-                                attack=pgd_linf, bitdepth=8, dither=True)
-
+    acc = adv_different_epsilon(model=model, loader=test_loader,
+                                attack=pgd_linf, bitdepth=8, dither=False)
 
     results = {}
-    results['adv'] = adv_err
-    filename = '8-bit-noise.json'
+    results['acc'] = acc
+    filename = 'epsilon-8.json'
     path = os.path.join(results_dir, filename)
     with open(path, 'w') as f:
         json.dump(results, f, indent=4)
