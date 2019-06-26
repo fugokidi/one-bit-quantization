@@ -32,18 +32,18 @@ def run(data_dir, trained_models_dir, momentum, weight_decay, results_dir,
 
     train_loader, test_loader = load_cifar10()
 
-    filename = 'resnet20-8bit.pt'
+    filename = 'resnet20-3bit-dither.pt'
     path = os.path.join(trained_models_dir, filename)
     model = resnet20().to(device)
     model.load_state_dict(torch.load(path))
     model.eval()
 
     acc = adv_different_epsilon(model=model, loader=test_loader,
-                                attack=pgd_linf, bitdepth=8, dither=False)
+                                attack=pgd_linf, bitdepth=3, dither=True)
 
     results = {}
     results['acc'] = acc
-    filename = 'epsilon-8.json'
+    filename = 'epsilon-3d.json'
     path = os.path.join(results_dir, filename)
     with open(path, 'w') as f:
         json.dump(results, f, indent=4)

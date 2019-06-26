@@ -71,10 +71,11 @@ def adv_quantize_test(model, loader, attack, bitdepth=8, dither=False):
         # X = 2 * (torch.rand_like(X) - 0.5) * (8/255)
         # X = torch.clamp(X, 0, 1)
 
-        if bitdepth != 8 and dither is True:
-            X = batch_dither(X, bitdepth)
-        elif bitdepth != 8 and dither is False:
-            X = quantize(X, bitdepth)
+        # if bitdepth != 8 and dither is True:
+        #     X = batch_dither(X, bitdepth)
+        # elif bitdepth != 8 and dither is False:
+        #     X = quantize(X, bitdepth)
+        X = quantize(X, bitdepth)
 
         X = X.to(device, non_blocking=True)
 
@@ -107,10 +108,11 @@ def adv_different_epsilon(model, loader, attack, bitdepth=8, dither=False):
             X = attack(model=model, inputs=X, targets=y, eps=eps,
                        step_size=step_size)
 
-            if bitdepth != 8 and dither is True:
-                X = batch_dither(X, bitdepth)
-            elif bitdepth != 8 and dither is False:
-                X = quantize(X, bitdepth)
+            # if bitdepth != 8 and dither is True:
+            #     X = batch_dither(X, bitdepth)
+            # elif bitdepth != 8 and dither is False:
+            #     X = quantize(X, bitdepth)
+            X = quantize(X, bitdepth)
 
             X = X.to(device, non_blocking=True)
 
