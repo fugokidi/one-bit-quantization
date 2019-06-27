@@ -20,10 +20,6 @@ def quantize(X, bitdepth):
     return (X * 255 / 2**(8 - bitdepth)).floor() / (2**bitdepth - 1)
 
 
-def dequantize(X, bitdepth):
-    return (X * (2**bitdepth - 1) * 2**(8 - bitdepth)).floor() / 255
-
-
 def apply_threshold(value, bitdepth):
     return floor(floor(value / 2**(8 - bitdepth)) / (2**bitdepth - 1) * 255)
 
