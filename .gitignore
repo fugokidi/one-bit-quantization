@@ -1,2 +1,6 @@
 __pycache__/
 data/
+results-update/
+results/
+trained-models/
+

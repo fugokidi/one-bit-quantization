@@ -10,18 +10,13 @@ Code for APSIPA 2019 paper
 
 # Test
 You need to specify which model to load.
-The test will do both normal and adversarialy test.
-You many want to write a bash script to run all tests.
+The test will do both normal and adversarial test.
 
-### To test 1 bit model
+### For example:
+#### To test 1 bit model
 
 `python eval-exp.py with bit=1 dithering=Fasle`
 
-### To test 1 bit dithered model
+#### To test 1 bit dithered model
 
 `python eval-exp.py with bit=1 dithering=True`
-
-### To test a model with different epsilon
-
-You need to specify the model name in the script `epsilon-exp.py`.
-I hard coded the name of the file in the script, sorry.
